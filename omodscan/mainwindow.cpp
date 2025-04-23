@@ -19,6 +19,7 @@
 #include "mainstatusbar.h"
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include "ChartDock.h"
 
 ///
 /// \brief MainWindow::MainWindow
@@ -62,6 +63,16 @@ MainWindow::MainWindow(QWidget *parent)
     connect(&_modbusClient, &ModbusClient::modbusConnectionError, this, &MainWindow::on_modbusConnectionError);
     connect(&_modbusClient, &ModbusClient::modbusConnected, this, &MainWindow::on_modbusConnected);
     connect(&_modbusClient, &ModbusClient::modbusDisconnected, this, &MainWindow::on_modbusDisconnected);
+
+    ChartDock *chartDock = new ChartDock(this);
+    addDockWidget(Qt::BottomDockWidgetArea, chartDock);
+
+    chartDock->setMinimumHeight(200);
+
+    connect(&_modbusClient,
+            &ModbusClient::registerValueReady,
+            chartDock,
+            &ChartDock::onRegisterValue);
 
     ui->actionNew->trigger();
     loadSettings();

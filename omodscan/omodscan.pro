@@ -1,4 +1,5 @@
 QT += core gui widgets network printsupport serialbus serialport
+QT += charts
 
 greaterThan(QT_MAJOR_VERSION, 5) {
     QT += core5compat
@@ -28,6 +29,7 @@ INCLUDEPATH += controls \
                modbusmessages \
 
 SOURCES += \
+    ChartDock.cpp \
     ansimenu.cpp \
     controls/addressbasecombobox.cpp \
     controls/booleancombobox.cpp \
@@ -89,6 +91,7 @@ SOURCES += \
     windowactionlist.cpp
 
 HEADERS += \
+    ChartDock.h \
     ansimenu.h \
     ansiutils.h \
     byteorderutils.h \
@@ -218,3 +221,5 @@ TRANSLATIONS += \
     translations/omodscan_ru.ts \
     translations/omodscan_cn.ts \
     translations/omodscan_zh.ts
+
+

@@ -549,6 +549,7 @@ void FormModSca::beginUpdate()
         ui->outputWidget->setStatus(tr("No Scan: Invalid Data Length Specified"));
 
     _timer.start();
+    // _timer.start(100);
 }
 
 ///

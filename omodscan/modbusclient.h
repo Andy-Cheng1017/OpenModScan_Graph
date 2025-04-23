@@ -46,6 +46,7 @@ signals:
     void modbusConnecting(const ConnectionDetails& cd);
     void modbusConnected(const ConnectionDetails& cd);
     void modbusDisconnected(const ConnectionDetails& cd);
+    void registerValueReady(int address, quint16 value);
 
 private slots:
     void on_readReply();

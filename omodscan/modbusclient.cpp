@@ -632,6 +632,13 @@ void ModbusClient::on_readReply()
     auto reply = qobject_cast<QModbusReply*>(sender());
     if (!reply) return;
 
+    QModbusDataUnit unit = reply->result();
+    int startAddr = unit.startAddress();
+    const auto values = unit.values();  // QVector<quint16>
+    for(int i = 0; i < values.size(); ++i) {
+        emit registerValueReady(startAddr + i, values.at(i));
+    }
+
     emit modbusReply(reply);
     reply->deleteLater();
 }
